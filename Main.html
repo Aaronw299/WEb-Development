@@ -1,0 +1,404 @@
+<!--R00103122-->
+<!--Aaron Williams-->
+
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>T-shirt Store</title>
+
+<link rel="stylesheet" type="text/css" href="mystyle.css">
+<script>
+var totalprice = 20.00;
+
+function changecolor()
+{
+colorstring= document.getElementById("shirtcolor").value;
+document.getElementById("shirtimage").style.backgroundColor=colorstring;
+
+}
+
+function changeSize(size)
+{
+if (size =='small')
+{
+  totalprice = 20.00;
+  document.getElementById('price').innerHTML="Total Price: &euro;"+ totalprice;
+  document.getElementById('shirtSize').innerHTML="Size: " + "Small";
+}
+if (size =='medium')
+{
+  totalprice = 25.00;
+  document.getElementById('price').innerHTML="Total Price: &euro;"+ totalprice;
+  document.getElementById('shirtSize').innerHTML="Size: " + "Medium + €5";
+}
+if (size =='large')
+{
+  totalprice = 30.00;
+  document.getElementById('price').innerHTML="Total Price: &euro;"+ totalprice;
+  document.getElementById('shirtSize').innerHTML="Size: " + "Large + €10";
+}
+
+}
+
+function changegender(value)
+{
+    if(value=='male')
+    {
+       document.getElementById('shirt').src = "tshirt2.png";
+	     document.getElementById('shirtlogo').style.left ="970px";
+       document.getElementById('shirtlogo').style.top="150px";
+       document.getElementById('shirtGen').innerHTML="Gender: " + "Male";
+    }
+    else{
+        document.getElementById('shirt').src= "tshirtf.png";
+        document.getElementById('shirtlogo').style.left ="970px";
+        document.getElementById('shirtlogo').style.top="160px";
+        document.getElementById('shirtGen').innerHTML="Gender: " + "Female";
+    }
+}
+
+function changelogo(img)
+{
+    if(img =="none"){
+        totalprice = totalprice + 0;
+        document.getElementById('shirtlogo').style.visibility="hidden";
+        document.getElementById('price').innerHTML="Total Price: &euro;"+ totalprice;
+         document.getElementById('logoTyp').innerHTML="Logo: " + img + " + €0";
+    }
+
+    if (img =="jumpman"){
+        totalprice = totalprice + 1.00;
+        document.getElementById('shirtlogo').src="jumpman.png";
+        document.getElementById('shirtlogo').style.visibility="visible";
+        document.getElementById('price').innerHTML="Total Price: &euro;"+ totalprice;
+        document.getElementById('logoTyp').innerHTML="Logo: " + img + " + €1";
+    }
+
+    if (img =="fish"){
+        totalprice = totalprice + 2.00;
+        document.getElementById('shirtlogo').src= "fish.png";
+        document.getElementById('shirtlogo').style.visibility="visible";
+        document.getElementById('price').innerHTML="Total Price: &euro;"+ totalprice;
+        document.getElementById('logoTyp').innerHTML="Logo: " + img + " + €2";
+    }
+
+    if (img =="spartan"){
+        totalprice = totalprice +3.00;
+        document.getElementById('shirtlogo').src= "spartan.gif";
+        document.getElementById('shirtlogo').style.visibility="visible";
+        document.getElementById('price').innerHTML="Total Price: &euro;"+ totalprice;
+        document.getElementById('logoTyp').innerHTML="Logo: " + img + " + €3";
+    }
+
+     if (img =="batman"){
+         totalprice = totalprice +4.00;
+        document.getElementById('shirtlogo').src= "batman.png";
+        document.getElementById('shirtlogo').style.visibility="visible";
+        document.getElementById('price').innerHTML="Total Price: &euro;"+ totalprice;
+        document.getElementById('logoTyp').innerHTML="Logo: " + img + " + €4";
+    }
+
+    if (img =="ghostbusters"){
+        totalprice = totalprice +5.00;
+        document.getElementById('shirtlogo').src= "ghostbusters.png";
+        document.getElementById('shirtlogo').style.visibility="visible";
+        document.getElementById('price').innerHTML="Total Price: &euro;"+ totalprice;
+        document.getElementById('logoTyp').innerHTML="Logo: " + img + " + €5";
+    }
+}
+
+function checkppsn(){
+    var total = 0;
+    var multiplier = 8;
+	var validpps = true;
+
+
+    var pps = document.getElementById("ppsn").value;
+    pps = pps.toUpperCase();
+
+	if (pps == null || pps =="")
+	{validpps = false;}
+
+    if (pps.length !=8)
+    {validpps = false;}
+
+
+        for (var n=0; n < pps.length-1; n++)
+        {
+           var x = parseInt(pps.slice(n,n+1),10);
+            x = x * multiplier;
+            total = total + x;
+            multiplier--;
+
+        }
+            var pos = pps.charCodeAt(7);
+            pos = pos - 64;
+
+            if (pos != total % 23)
+            {
+				validpps=false;
+            }
+
+  if(validpps){
+    alert("Valid ID Enjoy your discount!");
+  	document.getElementById('price').innerHTML="Total Price: &euro;"+ (totalprice -(totalprice/10));
+    document.getElementById('discountY/N').innerHTML="PPSN discount?  Yes  -10%"
+        }
+
+	return validpps;
+
+}
+
+
+function validateTel()
+{
+
+var validtel = true;
+
+var mobilenumber = document.getElementById('tel').value;
+    if ((mobilenumber==null) || (mobilenumber==""))
+	{
+	alert("Please enter phone number");
+	validtel= false;
+	}
+
+	if (mobilenumber.length != 10)
+	{
+	alert("Number must be 10 digits long");
+	validtel=false;
+	}
+
+	if (mobilenumber.slice(0,2) != "08")
+	{
+	alert("Number must begin with 08")
+	validtel=false;
+	}
+}
+
+
+function validateCC()
+{
+
+var total = 0;
+var n = 0;
+var validcc = true;
+
+
+var cardNumber = document.getElementById('ccnum').value;
+if (cardNumber.length != 16)
+	{
+	validcc = false;
+	}
+
+	var firstArray = new Array();
+	var secondArray = new Array();
+
+	for (var i=0;i < 8;i++){
+
+
+		firstArray[i] = parseInt(cardNumber.slice(n,n+1), 10) * 2;
+		if (firstArray[i] >= 10)
+		{
+			firstArray[i] = firstArray[i]-9;
+		}
+		n++;
+		secondArray[i] = parseInt(cardNumber.slice(n,n+1), 10);
+		n++;
+	}
+	for(var ii=0; ii < firstArray.length; ii++)
+	{
+	total += firstArray[ii];
+	total += secondArray[ii];
+	}
+	total = total % 10;
+	if (total != 0)
+	{
+		validcc = false;
+	}
+
+	return validcc;
+}
+
+function validateForm()
+{
+    var valid = true;
+	var testtel = false;
+	var testcc = false;
+
+	testcc= validateCC();
+	testtel = validateTel();
+
+
+    if (testtel == false)
+        {
+            alert('Please enter a valid telephone number');
+            document.getElementById('tel').style.background='yellow';
+            document.getElementById('tel').style.border="solid red 2px";
+            valid = false;
+
+        }
+
+    if (testcc==false)
+        {
+            alert('Please enter a valid credit card');
+            document.getElementById('ccnum').style.background='yellow';
+            document.getElementById('ccnum').style.border="solid red 2px";
+            valid = false;
+
+        }
+
+
+
+    return valid;
+
+}
+
+function changepay(pay){
+ if (pay == "c/d"){
+ document.getElementById("ccnum").style.visibility="visible";
+ document.getElementById("paypal").style.visibility="hidden";
+
+}
+if (pay == "paypal"){
+	document.getElementById("ccnum").style.visibility="hidden";
+ document.getElementById("paypal").style.visibility="visible";
+
+}
+
+}
+
+
+</script>
+
+
+</head>
+
+<body>
+<form name"info" onsubmit="return validateForm()" method="get" action="http://atlantis.cit.ie/displayvalues.php">
+<div id="Header">
+  <div align="center">Personal T-shirt Designs</div>
+</div>
+
+<div id="colorpicker">
+<h2 align="center">Your shirt your way :)</h2>
+<div id="sliders">
+Choose a shirt color: <input id="shirtcolor" type="color" name="color" value="#ffffff" onChange="changecolor(this.value)"><br><br>
+
+<div id="Header2">
+  <div align="center">Choose a size</div>
+</div>
+Small<input id="small" type="radio" name="size" checked="false" value="small" onClick="changeSize(this.value)">
+Medium<input id="medium" type="radio" name="size" checked="false" value="medium" onClick="changeSize(this.value)">
+Large<input id="large" type="radio" name="size" checked="false" value="large" onClick="changeSize(this.value)"><br>
+
+<div id="Header2">
+  <div align="center">For him or her?</div>
+</div>
+Male<input id="male" type="radio" name="gender" checked="true" value="male" onClick="changegender(this.value)">
+
+<input id="female" type="radio" name="gender"  value ="female" onClick="changegender(this.value)">Female
+<br><br>
+
+
+
+<div id="Header2">
+  <div align="center">Fancy an upgrade?</div>
+</div>
+
+<input type="radio" name="Logos" id="none" value="none" checked onClick="changelogo(this.value)" >None<br>
+
+<input type="radio" name="Logos" id="Jumpman" value="jumpman" onClick="changelogo(this.value)" >Jumpman<br>
+
+<input type="radio" name="Logos" id="Fish" value="fish" onClick="changelogo(this.value)"> Fish<br>
+
+<input type="radio" name="Logos" id="Spartan" value="spartan" onClick="changelogo(this.value)"> Spartan<br>
+
+<input type="radio" name="Logos" id="Batman" value="batman" onClick="changelogo(this.value)"> Batman<br>
+
+<input type="radio" name="Logos" id="GhostBusters" value="ghostbusters" onClick="changelogo(this.value)"> Ghost Busters<br><br>
+
+
+
+Please enter valid Irish PPS for a discount of 10%
+<input type="text" name="PPSN" id="ppsn" placeholder="PPS Number"><button type="button" onClick="checkppsn()">Check</button><br>
+<p id="discount">Please ensure you recheck ppsn after changes to order are made to better reflect your total price.</p>
+
+</div>
+</div>
+
+<div>
+  <h2> Your Shirt Design:</h2></div>
+<div id="shirtimage">
+<img src="tshirt2.png" id="shirt" width="270" height="320" alt="tshirt">
+<img src="fish.png" id="shirtlogo" width="40" height="40" alt="logo">
+
+
+</div>
+
+
+
+<div id="form">
+
+  <div id="Header2">
+    <div align="center">Personal Information:</div>
+  </div>
+
+<div align="center">
+  <input type="text" name="firstname" required placeholder="First Name">
+  <br>
+  <input type="text" name="lastname" required  placeholder="Last Name">
+  <br>
+  <input type="date" name="bday" required>
+  <br>
+
+  <input type="text" id="tel" name="mobilenumber" pattern=[0-9]{10} required placeholder="Mobile Number">
+  <br>
+  <input type="email" name="email" required placeholder="Email Address">
+  <br>
+  <textarea name="address" rows="5" cols="30" required placeholder="Address"></textarea>
+  <br>
+  <br>
+  <br>
+  <br>
+  </form>
+</div>
+</div>
+</div>
+
+<div id="Header2">
+  <div align="center">Choose a payment method</div>
+</div>
+<div id="order">
+Credit/Debit<input type="radio" name="payment" value="c/d" onClick="changepay(this.value)">
+<br>
+Paypal<input type="radio" name="payment" value ="paypal" onClick="changepay(this.value)">
+<br>
+<input type="text" name="pay" pattern=[0-9]{16} id="ccnum" required placeholder="Credit Card Number">
+<br>
+<input type="text" name="pay" id="paypal" required placeholder="paypal username">
+<br>
+<input type="submit" value="Order" onClick="orderSummary()">
+</div>
+<div id="Header2">
+  <div align="center">Order Details</div>
+</div>
+    </br></br>
+
+<div id="order">
+  <p id="basePrice">Base Price: &euro;20</p>
+  <p id="shirtSize">Size: </p>
+  <p id="shirtGen">Gender: </p>
+  <p id="logoTyp">Logo: </p>
+  <p id="discountY/N">PPSN discount?: </p>
+  <p>___________________</p>
+  <p id="price">Total Price: &euro;20</p>
+</div>
+<div id="footer">
+	T-shirt Designs & Logos &#169; 2016
+	</div>
+
+</body>
+
+
+</html>
