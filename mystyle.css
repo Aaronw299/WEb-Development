@@ -1,0 +1,120 @@
+ margin: 0; margin: 0; margin: 0; margin: 0; margin: 0;h2
+{
+ padding:0px;
+ margin:5px;
+}
+
+h3
+{
+margin:0px;
+}
+
+#header
+{
+	color:white;
+	font-family:helvetica;
+	line-height:35px;
+	text-align:center;
+	background-color: #404040;
+	margin-bottom:50px;
+	border-radius:20px;
+}
+
+body
+{
+	color:white;
+	background-image: url(aback.jpg);
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+}
+
+#form
+{
+	padding:15px;
+    clear:both;
+}
+#form input
+{
+    width:40%;
+}
+
+#sliders
+{
+	float:left;
+    padding:15px;
+	width:250px;
+}
+
+div.img {
+    margin: 5px;
+    border: 1px solid #ccc;
+    float: right;
+    position: relative;
+    left: -22%;
+    width: 180px;
+}
+
+div.img:hover {
+	border: 1px solid #777;
+}
+
+div.img img {
+    width: 100%;
+    height: auto;
+}
+
+div.desc {
+    padding: 15px;
+    text-align: center;
+}
+
+#guitarimage
+{
+	margin-left:300px;
+	width:1500px;
+}
+
+
+#guitarlogo
+{
+	position:absolute;
+	top:900px;
+	left:470px;
+	visibility:hidden;
+}
+
+.ordercol {
+	width:870px;
+	min-height:300px;
+	background-color:#404040;
+	padding:10px;
+	margin:10px;
+	float: right;
+    position: relative;
+    left: 12%;
+	border-style: solid;
+	border-radius:10px;
+	}
+
+input:required:invalid{
+  background-image: url(invalid.png);
+  background-position: right top;
+  background-repeat: no-repeat;
+}
+input:required:valid {
+  background-image: url(valid.png);
+  background-position: right top;
+  background-repeat: no-repeat;
+}
+
+textarea:required:invalid{
+  background-image: url(invalid.png);
+  background-position: right top;
+  background-repeat: no-repeat;
+}
+
+textarea:required:valid {
+  background-image: url(valid.png);
+  background-position: right top;
+  background-repeat: no-repeat;
+}
